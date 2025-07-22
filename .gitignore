@@ -1,0 +1,11 @@
+# Ignore virtual environment and temp files
+venv/
+__pycache__/
+*.pyc
+
+# Ignore audio uploads and models
+uploads/
+*.h5
+serviceAccountKey.json
+
+

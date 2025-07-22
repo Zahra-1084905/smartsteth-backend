@@ -8,4 +8,4 @@ services:
       - key: GOOGLE_APPLICATION_CREDENTIALS
         value: serviceAccountKey.json
 build:
-  pythonVersion: 3.10
+  pythonVersion: 3.9

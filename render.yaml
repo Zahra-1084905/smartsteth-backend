@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: smartsteth-backend
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        value: serviceAccountKey.json
+build:
+  pythonVersion: 3.10

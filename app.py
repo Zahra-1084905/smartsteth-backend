@@ -10,12 +10,22 @@ import tensorflow as tf
 import keras
 keras.config.enable_unsafe_deserialization()
 import firebase_admin
-from firebase_admin import credentials, storage
+from firebase_admin import credentials, storage, firestore
 
-cred = credentials.Certificate("serviceAccountKey.json")
-firebase_admin.initialize_app(cred, {
-    'storageBucket': 'firebz-setup.firebasestorage.app'  
-})
+# NEW: Load service account path from environment variable
+cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
+# Initialize Firebase app
+if not firebase_admin._apps:
+    cred = credentials.Certificate(cred_path)
+    firebase_admin.initialize_app(cred, {
+        'storageBucket': 'firebz-setup.firebasestorage.app'
+    })
+
+# cred = credentials.Certificate("serviceAccountKey.json")
+# firebase_admin.initialize_app(cred, {
+#     'storageBucket': 'firebz-setup.firebasestorage.app'  
+# })
 
 
 #registers for lung custom functions.

@@ -237,6 +237,10 @@ def get_diagnosis(uid):
         "heart": heart
     })
 
+@app.route("/", methods=["GET"])
+def index():
+    return "SmartSteth backend is running!"
+
 
 if __name__ == "__main__":
     import socket

@@ -13,13 +13,15 @@ import firebase_admin
 from firebase_admin import credentials, storage, firestore
 
 # NEW: Load service account path from environment variable
-cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+# cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 
 # Initialize Firebase app
 if not firebase_admin._apps:
-    cred = credentials.Certificate(cred_path)
+    cred = credentials.Certificate("/secrets/firebase-service-account")
+    # cred = credentials.Certificate("serviceAccountKey.json")
     firebase_admin.initialize_app(cred, {
-        'storageBucket': 'firebz-setup.firebasestorage.app'
+        'storageBucket': 'firebz-setup.appspot.com'
+        # 'storageBucket': 'firebz-setup.firebasestorage.app'
     })
 
 # cred = credentials.Certificate("serviceAccountKey.json")
@@ -242,13 +244,21 @@ def index():
     return "SmartSteth backend is running!"
 
 
-if __name__ == "__main__":
-    import socket
-    hostname = socket.gethostname()
-    local_ip = socket.gethostbyname(hostname)
-    print("Flask server is starting...")
-    print(f"Flask server running at: http://{local_ip}:5000")
-    app.run(host='0.0.0.0', port=8080, debug=True)
+@app.route("/", methods=["GET"])
+def index():
+    return "SmartSteth backend is running!"
+
+
+# if __name__ == "__main__":
+#     import socket
+#     hostname = socket.gethostname()
+#     local_ip = socket.gethostbyname(hostname)
+#     print("Flask server is starting...")
+#     port = int(os.environ.get("PORT", 8080))
+#     app.run(host="0.0.0.0", port=port, debug=True)
+
+    # print(f"Flask server running at: http://{local_ip}:5000")
+    # app.run(host='0.0.0.0', port=8080, debug=True)
 
 
 

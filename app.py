@@ -248,6 +248,13 @@ def index():
 def index():
     return "SmartSteth backend is running!"
 
+if __name__ == "__main__":
+    import socket
+    hostname = socket.gethostname()
+    local_ip = socket.gethostbyname(hostname)
+    print("Flask server is starting...")
+    port = int(os.environ.get("PORT", 8080)) 
+    app.run(host="0.0.0.0", port=port, debug=True)
 
 # if __name__ == "__main__":
 #     import socket
